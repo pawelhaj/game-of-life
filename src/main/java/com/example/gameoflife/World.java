@@ -17,17 +17,14 @@ public class World {
         for (int x = 0; x < MAX_SIZE; x++) {
             for (int y = 0; y < MAX_SIZE; y++) {
                 if (aliveCells.contains(Cell.of(x,y)))
-                    System.out.print(1);
+                    System.out.print(" 1 ");
                 else
-                    System.out.print(0);
+                    System.out.print(" 0 ");
             }
             System.out.print("\n");
         }
     }
 
-    public void nextDay () {
-
-    }
 
     public int neighbours(Cell currentCell) {
         int x = currentCell.getX();

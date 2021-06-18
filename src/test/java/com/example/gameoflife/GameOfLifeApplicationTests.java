@@ -12,13 +12,13 @@ class GameOfLifeApplicationTests {
     @Test
     void initWorld() {
 
-        Set<Cell> cells = new HashSet<>();
-        cells.add(Cell.of(0, 1));
-        cells.add(Cell.of(0, 9));
-        cells.add(Cell.of(1, 0));
+        int[][] board = new int[][]{
+                {0, 0, 0},
+                {0, 1, 0},
+                {0, 0, 0}
+        };
 
-        World world = new World(cells);
-
+        World world = new World(getActiveCells(board));
         world.print();
     }
 
@@ -30,5 +30,18 @@ class GameOfLifeApplicationTests {
         int neighbours = world.neighbours(Cell.of(0, 0));
 
         assertThat(neighbours).isEqualTo(0);
+    }
+
+    private Set<Cell> getActiveCells(int[][] cells) {
+        Set<Cell> aliveCells = new HashSet<>();
+        for (int i = 0; i < cells.length; i++) {
+            for (int j = 0; j < cells.length; j++) {
+                int isActive = cells[i][j];
+                if (isActive == 1) {
+                    aliveCells.add(Cell.of(i, j));
+                }
+            }
+        }
+        return aliveCells;
     }
 }
